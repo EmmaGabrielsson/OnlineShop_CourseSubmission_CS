@@ -37,11 +37,20 @@ main {
     }
 
     .search-input {
-        border-radius: 5px;
+        border-radius: 5px 0 0 5px;
     }
 
-    #cart {
-        font-size: 30px;
+    .search-icon {
+        border-radius: 0 5px 5px 0;
+        border: 2px solid black
+    }
+
+    .search-icon:hover {
+        background-color: #bdbdbd;
+    }
+
+    .cart {
+        font-size: 28px;
         padding: 3px;
     }
 
