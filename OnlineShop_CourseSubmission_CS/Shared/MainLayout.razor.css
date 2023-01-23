@@ -36,17 +36,27 @@ main {
         text-overflow: ellipsis;
     }
 
+    .search-input {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .search-icon {
+        border-radius: 0 5px 5px 0;
+        border: 2px solid black
+    }
+
+    .search-icon:hover {
+        background-color: #bdbdbd;
+    }
+
+    .cart {
+        font-size: 28px;
+        padding: 3px;
+    }
+
 @media (max-width: 640.98px) {
-    .top-row:not(.auth) {
-        display: none;
-    }
-
-    .top-row.auth {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
+    .top-row {
+        justify-content: center;
     }
 }
 

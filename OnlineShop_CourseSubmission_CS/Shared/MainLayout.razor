@@ -7,11 +7,21 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <input class="search-input mb-3 mt-3 p-1" placeholder="search products.."/>
+            <button class="search-icon oi oi-magnifying-glass p-2" title="Search"></button>
+            <a class="cart oi oi-star" href="wishlist" title="Your Wishlist"></a>
+            <a class="cart oi oi-cart m-3" href="cart" title="Your Cart"></a>
         </div>
 
         <article class="content px-4">
             @Body
         </article>
+    <footer class="text-center text-secondary bg-light p-3">
+        <p>This is an OnlineShop with Blazor in C# by Mia Chen & Emma Gabrielsson</p>
+    </footer>
     </main>
 </div>
+
+@code {
+
+}
