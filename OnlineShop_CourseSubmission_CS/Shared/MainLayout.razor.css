@@ -36,17 +36,18 @@ main {
         text-overflow: ellipsis;
     }
 
+    .search-input {
+        border-radius: 5px;
+    }
+
+    #cart {
+        font-size: 30px;
+        padding: 3px;
+    }
+
 @media (max-width: 640.98px) {
-    .top-row:not(.auth) {
-        display: none;
-    }
-
-    .top-row.auth {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
+    .top-row {
+        justify-content: center;
     }
 }
 
