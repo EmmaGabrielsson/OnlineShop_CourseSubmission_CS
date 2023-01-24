@@ -1,10 +1,39 @@
 ﻿@page "/mensclothing"
-
+@using OnlineShop_CourseSubmission_CS.Components
+@using OnlineShop_CourseSubmission_CS.Data
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject Data DataService
 <PageTitle>OnlineShop - Men´s Clothing</PageTitle>
 
 
 <h3>Products - Men´s Clothing</h3>
 
+<ul>
+    @if (products != null)
+    {
+        foreach (var item in mensProducts)
+        {
+           <div class="card" style="width: 18rem;">
+              <img src=@item.image class="card-img-top" alt="products">
+              <div class="card-body">
+              <h5 class="card-title">@item.title</h5>
+              <p class="card-text">@item.description</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+           </div>
+        }
+    }
+</ul>
+
+
 @code {
+    private Products[] mensProducts;
+    private Products[] products;
+    protected override async Task OnInitializedAsync()
+    {
+        products = await DataService.GetAllProducts();
+        mensProducts = products.Where<Products>(prod => prod.category == "men's clothing").ToArray<Products>();
+    }
 
 }

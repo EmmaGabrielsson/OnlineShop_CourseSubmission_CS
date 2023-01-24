@@ -1,9 +1,38 @@
 ﻿@page "/electronics"
-
+@using OnlineShop_CourseSubmission_CS.Components
+@using OnlineShop_CourseSubmission_CS.Data
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject Data DataService
 <PageTitle>OnlineShop - Electronics</PageTitle>
 
 <h3>Products - Electronics</h3>
 
+<ul>
+    @if (products != null)
+    {
+        foreach (var item in electronics)
+        {
+            <div class="card" style="width: 18rem;">
+               <img src=@item.image class="card-img-top" alt="products">
+               <div class="card-body">
+               <h5 class="card-title">@item.title</h5>
+               <p class="card-text">@item.description</p>
+               <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+            </div>
+        }
+    }
+</ul>
+
+
 @code {
+    private Products[] electronics;
+    private Products[] products;
+    protected override async Task OnInitializedAsync()
+    {
+        products = await DataService.GetAllProducts();
+        electronics = products.Where<Products>(prod => prod.category == "electronics").ToArray<Products>();
+    }
 
 }

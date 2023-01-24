@@ -14,13 +14,16 @@
     @if (products != null)
     {
         foreach (var item in jeweleryProducts)
-        {
-                    <li>
-                        <div>
-                    @item.title
-                        </div>
-                    </li>
-        }
+			{
+				<div class="card" style="width: 18rem;">
+					<img src=@item.image class="card-img-top" alt="products">
+					<div class="card-body">
+					<h5 class="card-title">@item.title</h5>
+					<p class="card-text">@item.description</p>
+					<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			}
     }
 </ul>
 
