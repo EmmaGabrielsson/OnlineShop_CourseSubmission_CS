@@ -1,6 +1,5 @@
-﻿using OnlineShop_CourseSubmission_CS.Components;
-
-namespace OnlineShop_CourseSubmission_CS.Data
+﻿
+namespace OnlineShop_CourseSubmission_CS.Components
 {
     public class Category
     {

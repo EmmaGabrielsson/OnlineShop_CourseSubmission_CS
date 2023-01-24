@@ -1,10 +1,37 @@
 ﻿@page "/jewelery"
+@using OnlineShop_CourseSubmission_CS.Components
+@using OnlineShop_CourseSubmission_CS.Data
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject Data DataService
 
 <PageTitle>OnlineShop - Jewelery</PageTitle>
 
 
 <h3>Products - Jewelery</h3>
 
+<ul>
+    @if (products != null)
+    {
+        foreach (var item in jeweleryProducts)
+        {
+                    <li>
+                        <div>
+                    @item.title
+                        </div>
+                    </li>
+        }
+    }
+</ul>
+
+
 @code {
+    private Products[] jeweleryProducts;
+    private Products[] products;
+    protected override async Task OnInitializedAsync()
+    {
+        products = await DataService.GetAllProducts();
+        jeweleryProducts = products.Where<Products>(prod => prod.category == "jewelery").ToArray<Products>();
+    }
 
 }
