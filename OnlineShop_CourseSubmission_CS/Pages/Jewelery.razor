@@ -3,38 +3,47 @@
 @using OnlineShop_CourseSubmission_CS.Data
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
-@inject Data DataService
+@inject DataService DataService
 
 <PageTitle>OnlineShop - Jewelery</PageTitle>
 
 
 <h3>Products - Jewelery</h3>
 
-<ul>
-    @if (products != null)
+@if (jeweleryProducts != null)
     {
         foreach (var item in jeweleryProducts)
-			{
-				<div class="card" style="width: 18rem;">
-					<img src=@item.image class="card-img-top" alt="products">
-					<div class="card-body">
-					<h5 class="card-title">@item.title</h5>
-					<p class="card-text">@item.description</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+	{
+		<div class="card" >
+			<a href="/product/@item.Id" >
+				<div class="added-card">
+						<img src=@item.Image class="card-img-top" alt="products">
 					</div>
-				</div>
-			}
+				</a>
+			<div class="card-body overflow-auto" style="height:300px">
+				<h5 class="card-title">@item.Title</h5>
+								<p class="card-text">@item.Description</p>
+							</div>	
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">€@item.Price</li>
+						   </ul>
+							<div class="card-body d-flex justify-content-between">
+								 <button  class="btn btn-secondary" >More <span class= "small-hidden">info</span></button>
+								 <button  class="btn btn-secondary">Add <span class= "small-hidden">to cart</span> </button>	
+							</div>
+						</div>
+	}
     }
-</ul>
+
 
 
 @code {
-    private Products[] jeweleryProducts;
-    private Products[] products;
+    private Products[]? jeweleryProducts;
+    private Products[]? products;
     protected override async Task OnInitializedAsync()
     {
         products = await DataService.GetAllProducts();
-        jeweleryProducts = products.Where<Products>(prod => prod.category == "jewelery").ToArray<Products>();
+        jeweleryProducts = products.Where<Products>(prod => prod.Category == "jewelery").ToArray<Products>();
     }
 
 }
