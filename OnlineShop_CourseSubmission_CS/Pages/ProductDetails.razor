@@ -1,0 +1,43 @@
+﻿@page "/product/{id}"
+@using OnlineShop_CourseSubmission_CS.Components;
+@using OnlineShop_CourseSubmission_CS.Data
+@inject DataService DataService
+
+@if (product!=null){
+<div class="container">
+	<div>
+		<img src="@product.Image" alt="@product.Title" />
+	</div>
+	<div>
+		<h2>@product.Title</h2>
+		<h5>Category: @product.Category</h5>
+		<h5>Rate: @product.Rating.Rate</h5>
+		<h5>Viewed by @product.Rating.Count People</h5>
+		<h4>@product.Price</h4>
+		<div>@product.Description</div>
+		<div class="card-body d-flex justify-content-between">
+			<button class="btn btn-secondary">Add <span class="small-hidden">to cart</span> </button>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+			</svg>
+
+		</div>
+	</div>
+</div>
+}
+
+
+@code {
+	private Products[]? products;
+	private Products? product;
+
+	[Parameter]
+	public string? id { get; set; }
+	protected override async Task OnInitializedAsync()
+	{
+		products = await DataService.GetAllProducts();
+		if (id!=null){
+		product = products.FirstOrDefault(p => p.Id == Int32.Parse(id));
+		}
+	}
+}

@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace OnlineShop_CourseSubmission_CS.Data
 {
-    public class Data
+    public class DataService
     {
      
         public async Task<Products[]> GetAllProducts()
