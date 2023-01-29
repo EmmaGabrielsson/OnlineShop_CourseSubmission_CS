@@ -71,6 +71,13 @@ main {
     color: #0e2529; 
 }
 
+.no-match {
+    background-color: #ffe566;
+    border-radius: 10px;
+    padding: 6px;
+    width: fit-content;
+}
+
 footer {
     position: absolute;
     bottom: 0;
