@@ -6,6 +6,7 @@
 
 main {
     flex: 1;
+    margin-bottom: 7rem;
 }
 
 .sidebar {
@@ -54,6 +55,22 @@ main {
         padding: 3px;
     }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f7f7f7;
+    border-top: 1px solid #d6d5d5;
+    height: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    font-weight: bold;
+}
+
 @media (max-width: 640.98px) {
     .top-row {
         justify-content: center;
@@ -87,5 +104,8 @@ main {
     .top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
+    }
+    footer {
+        left: 250px;
     }
 }
