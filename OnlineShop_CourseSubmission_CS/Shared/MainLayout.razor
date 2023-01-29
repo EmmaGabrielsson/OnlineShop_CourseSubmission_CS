@@ -60,7 +60,14 @@
                 }
                 else if (Search)
                 {
-                    <h4>Searching ...</h4>
+                    <div>
+                    <p>Searching..</p>
+                    <svg class="searching-progress">
+                        <circle r="40%" cx="50%" cy="50%" />
+                        <circle r="40%" cx="50%" cy="50%" />
+                    </svg>
+                    <div class="searching-progress-text"></div>
+                    </div>
                 }
                 else if (!Search && SearchedProducts == null)
                 {

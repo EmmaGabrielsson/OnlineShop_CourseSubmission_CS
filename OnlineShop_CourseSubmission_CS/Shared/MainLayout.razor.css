@@ -1,7 +1,9 @@
+
 .page {
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
@@ -84,11 +86,48 @@ footer {
     align-items: center;
     z-index: 0;
     font-weight: bold;
+
 }
+
+.searching-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+    .searching-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+        .searching-progress circle:last-child {
+            stroke: #0076878e;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
+
+.searching-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(40vh + 4rem) 0 auto 0.2rem;
+}
+
+    .searching-progress-text:after {
+        content: var(--blazor-load-percentage-text);
+    }
+
+
 
 @media (min-width: 641px) {
     .page {
         flex-direction: row;
+        min-height: none;
     }
 
     .sidebar {
@@ -117,6 +156,9 @@ footer {
 
     footer {
         left: 250px;
+    }
+    .searching-progress-text {
+        inset: calc(32vh + 4rem) 0 auto 16.5rem;
     }
 
 }
