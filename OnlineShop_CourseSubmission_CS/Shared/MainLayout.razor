@@ -20,7 +20,7 @@
                        @bind="SearchString"
                        @onkeydown="@(e => {if(e.Code == "Enter"){preventDefault = true;} else {preventDefault= false;}})"
                        @onkeydown:preventDefault="preventDefault"
-                       class="search-input mb-3 mt-3 p-1"
+                       class="search-input"
                        placeholder="search products.." />
                 <button type="button" @onclick="HandleSearch" class="search-icon oi oi-magnifying-glass p-2"></button>
             </form>
@@ -62,7 +62,7 @@
                 {
                     <h4>Searching ...</h4>
                 }
-                else
+                else if (!Search && SearchedProducts == null)
                 {
                     <h4>Sorry, no products matched your search. Try other searchwords.</h4>
                 }
@@ -92,9 +92,10 @@
         Search = true;
         products = await DataService.GetAllProducts();
         SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(SearchString.ToLower())).ToArray<Products>();
-        Search = false;
         StateHasChanged();
         SearchedProducts = null;
+        Search = false;
     }
+
 
 }
