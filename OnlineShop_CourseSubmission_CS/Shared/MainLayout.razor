@@ -19,13 +19,14 @@
                        type="text"
                        @bind="SearchString"
                        @oninput="HandleSearch"
+                       @onblur="HandleSearch"
                        @onkeydown="@(e => {if(e.Code == "Enter"){preventDefault = true;} else {preventDefault= false;}})"
                        @onkeydown:preventDefault="preventDefault"
                        class="search-input"
                        placeholder="search products.." />
-                <button type="button" @onclick="HandleSearch" class="search-icon oi oi-magnifying-glass p-2"></button>
+                <button type="button" class="search-icon oi oi-magnifying-glass p-2"></button>
             </form>
-            <a class="cart oi oi-star" href="wishlist" title="Your Wishlist"></a>
+            <a class="cart oi oi-heart" href="wishlist" title="Your Wishlist"></a>
             <a class="cart oi oi-cart m-3" href="cart" title="Your Cart"></a>
         </div>
 
@@ -80,8 +81,7 @@
             }
         </article>
         <footer>
-            <p>This is an OnlineShop with Blazor in C#</p>
-                <p>by Mia Chen & Emma Gabrielsson</p>
+            <p>This is an OnlineShop with Blazor (C# .NET) by <span>Mia Chen</span> & <span>Emma Gabrielsson</span></p>
         </footer>
     </main>
 </div>
@@ -100,7 +100,6 @@
         Search = true;
         products = await DataService.GetAllProducts();
         SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(SearchString.ToLower())).ToArray<Products>();
-        Console.WriteLine(SearchedProducts);
         StateHasChanged();
         SearchString = string.Empty;
         SearchedProducts = null;

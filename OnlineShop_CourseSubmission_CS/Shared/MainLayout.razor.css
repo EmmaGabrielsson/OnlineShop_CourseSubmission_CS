@@ -91,10 +91,15 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 0 1rem;
     z-index: 0;
     font-weight: bold;
-
 }
+
+    footer p span {
+        color: #013d48;
+    }
 
 .searching-progress {
     position: relative;
