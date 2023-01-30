@@ -1,4 +1,5 @@
-﻿using OnlineShop_CourseSubmission_CS.Components;
+﻿using OnlineShop_CourseSubmission_CS.Component;
+using OnlineShop_CourseSubmission_CS.Components;
 using OnlineShop_CourseSubmission_CS.Pages;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -16,13 +17,17 @@ namespace OnlineShop_CourseSubmission_CS.Data
 
             try
             {
-                using HttpResponseMessage response = await client.GetAsync("https://fakestoreapi.com/products");
-                response.EnsureSuccessStatusCode();
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-               
-                Products[] productList = JsonSerializer.Deserialize<Products[]>(responseBody)!;
-                return productList;
-       
+                if (DataStorage.ProductList == null){
+                        using HttpResponseMessage response = await client.GetAsync("https://fakestoreapi.com/products");
+                        response.EnsureSuccessStatusCode();
+                        string responseBody = response.Content.ReadAsStringAsync().Result;
+
+                        DataStorage.ProductList = JsonSerializer.Deserialize<Products[]>(responseBody)!;
+                        return DataStorage.ProductList;
+                } else
+                {
+                    return DataStorage.ProductList;
+                }
             }
             catch
             {
