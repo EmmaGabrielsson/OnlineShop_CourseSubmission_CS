@@ -18,6 +18,7 @@
                 <input required
                        type="text"
                        @bind="SearchString"
+                       @oninput="HandleSearch"
                        @onkeydown="@(e => {if(e.Code == "Enter"){preventDefault = true;} else {preventDefault= false;}})"
                        @onkeydown:preventDefault="preventDefault"
                        class="search-input"
@@ -29,11 +30,11 @@
         </div>
 
         <article class="content px-4">
-            @if (!string.IsNullOrEmpty(saveSearchString))
+            @if (!string.IsNullOrEmpty(SearchString))
             {
                 @if (SearchedProducts != null)
                 {
-                    <h4>Your search for @saveSearchString:</h4>
+                    <h4>Your search for @SearchString:</h4>
                     <div class="flex flex-row flex-wrap">
                         @foreach (var product in SearchedProducts)
                         {
@@ -88,7 +89,6 @@
 @code {
 
     private string SearchString = string.Empty;
-    private string? saveSearchString;
     private Products[]? products;
     private Products[]? SearchedProducts;
     private bool Search = false;
@@ -98,15 +98,13 @@
     private async void HandleSearch()
     {
         Search = true;
-        saveSearchString = SearchString;
         products = await DataService.GetAllProducts();
-        SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(saveSearchString.ToLower())).ToArray<Products>();
+        SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(SearchString.ToLower())).ToArray<Products>();
         Console.WriteLine(SearchedProducts);
-        SearchString = string.Empty;
         StateHasChanged();
+        SearchString = string.Empty;
         SearchedProducts = null;
         Search = false;
     }
-
 
 }
