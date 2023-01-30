@@ -1,4 +1,5 @@
 using OnlineShop_CourseSubmission_CS;
+using OnlineShop_CourseSubmission_CS.Component;
 using OnlineShop_CourseSubmission_CS.Components;
 using OnlineShop_CourseSubmission_CS.Data;
 
@@ -7,33 +8,50 @@ namespace UnitTests
     public class UnitTest1
     {
 
+        [Fact]
+        public async void TestAdd()
+        {
 
-        public static List<CartItem> CartList = new();
-
-        [Theory]
-        [InlineData(112)]
-        public static async Task AddToCart(int productId)
+            Products prod1 = new Products()
             {
-                DataService data = new DataService();
-                Products[] allProd = await data.GetAllProducts();
-                Products product = allProd.FirstOrDefault(x => x.Id == productId);
-                CartItem? foundCartItem = CartList.Find(cartItem => cartItem.Product.Id == productId);
-                if (foundCartItem == null)
-                {
-                    CartItem newCartItem = new CartItem()
-                    {
-                        UserId = 1,
-                        CartId = 1,
-                        Product = product,
-                        Quantity = 1
-                    };
-                    CartList.Add(newCartItem);
-                }
-                else
-                {
-                    foundCartItem.Quantity++;
-                }
-            }
+                Id = 1,
+                Category = "new cata",
+                Price = 100,
+                Title = "Prod 1",
+                Description = "",
+                Image = ""
+            };
+
+            Products prod2 = new Products()
+            {
+                Id = 2,
+                Category = "new cata",
+                Price = 100,
+                Title = "Prod 2",
+                Description = "",
+                Image = ""
+            };
+
+            DataStorage.ProductList= new Products[] { prod1,prod2 };
+
+
+            await ShoppingCart.AddToCart(1);
+            Assert.Single(ShoppingCart.CartList);
+            await ShoppingCart.AddToCart(1);
+            Assert.Single(ShoppingCart.CartList);
+
+            CartItem? cartItem = ShoppingCart.CartList.FirstOrDefault(x => x.Product.Id == 1);
+            Assert.NotNull(cartItem);
+            Assert.Equal(2, cartItem.Quantity);
+
+            await ShoppingCart.AddToCart(3);
+            Assert.Single(ShoppingCart.CartList);
+
+            CartItem? cartItem3 = ShoppingCart.CartList.FirstOrDefault(y => y.Product.Id == 3);
+            Assert.Null(cartItem3);
+
+        }
+        
 
         [Fact]
         public void UpdateTotalPrice()
