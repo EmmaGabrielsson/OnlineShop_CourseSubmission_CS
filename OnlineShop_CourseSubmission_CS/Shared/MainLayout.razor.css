@@ -64,11 +64,32 @@ main {
 .cart {
     color: #007687;
     font-size: 28px;
-    padding: 3px;    
+    padding: 3px;
 }
 
 .cart:hover {
     color: #0e2529; 
+}
+
+.card {
+    width: auto;
+    height: 200px;
+    flex-direction: row;
+    margin: 20px 0;
+}
+
+.card img {
+    padding: 2rem;
+    width: 150px;
+}
+
+.card-body {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.card .card-title {
+    font-weight: bold;
 }
 
 .no-match {

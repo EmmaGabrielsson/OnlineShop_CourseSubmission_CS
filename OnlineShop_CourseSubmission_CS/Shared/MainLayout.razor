@@ -18,13 +18,11 @@
                 <input required
                        type="text"
                        @bind="SearchString"
-                       @oninput="HandleSearch"
-                       @onblur="HandleSearch"
                        @onkeydown="@(e => {if(e.Code == "Enter"){preventDefault = true;} else {preventDefault= false;}})"
                        @onkeydown:preventDefault="preventDefault"
                        class="search-input"
                        placeholder="search products.." />
-                <button type="button" class="search-icon oi oi-magnifying-glass p-2"></button>
+                <button type="button" @onclick="HandleSearch" class="search-icon oi oi-magnifying-glass p-2"></button>
             </form>
             <a class="cart oi oi-heart" href="wishlist" title="Your Wishlist"></a>
             <a class="cart oi oi-cart m-3" href="cart" title="Your Cart"></a>
@@ -36,7 +34,7 @@
                 @if (SearchedProducts != null)
                 {
                     <h4>Your search for @SearchString:</h4>
-                    <div class="flex flex-row flex-wrap">
+                    <div class="container flex flex-column flex-wrap gap-2">
                         @foreach (var product in SearchedProducts)
                         {
                             <div class="card">
@@ -45,14 +43,14 @@
                                         <img src=@product.Image class="card-img-top" alt="products">
                                     </div>
                                 </a>
-                                <div class="card-body overflow-auto" style="height:300px">
+                                <div class="card-body">
                                     <h5 class="card-title">@product.Title</h5>
                                     <p class="card-text">@product.Description</p>
                                 </div>
-                                <ul class="list-group list-group-flush">
+                                <ul class="price list-group list-group-flush">
                                     <li class="list-group-item">€@product.Price</li>
                                 </ul>
-                                <div class="card-body d-flex justify-content-between">
+                                <div class="d-flex justify-content-between">
                                     <button class="btn btn-secondary">More <span class="small-hidden">info</span></button>
                                     <button class="btn btn-secondary">Add <span class="small-hidden">to cart</span> </button>
                                 </div>
@@ -65,14 +63,14 @@
                 }
                 else if (Search)
                 {
-                    <div>
+                  <div>
                     <p>Searching..</p>
                     <svg class="searching-progress">
                         <circle r="40%" cx="50%" cy="50%" />
                         <circle r="40%" cx="50%" cy="50%" />
                     </svg>
                     <div class="searching-progress-text"></div>
-                    </div>
+                  </div>
                 }
             }
             else
@@ -95,15 +93,16 @@
     private bool preventDefault;
 
 
+    //Function to get searched products and sort them into SearchedProducts array.
     private async void HandleSearch()
     {
         Search = true;
         products = await DataService.GetAllProducts();
         SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(SearchString.ToLower())).ToArray<Products>();
         StateHasChanged();
-        SearchString = string.Empty;
         SearchedProducts = null;
         Search = false;
+        SearchString = string.Empty;
     }
 
 }
