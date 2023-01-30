@@ -1,4 +1,11 @@
 ﻿@inherits LayoutComponentBase
+@using OnlineShop_CourseSubmission_CS.Components
+@using OnlineShop_CourseSubmission_CS.Data
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@using System.Linq;
+@inject DataService DataService;
+
 
 <div class="page">
     <div class="sidebar">
@@ -7,21 +14,95 @@
 
     <main>
         <div class="top-row px-4">
-            <input class="search-input mb-3 mt-3 p-1" placeholder="search products.."/>
-            <button class="search-icon oi oi-magnifying-glass p-2" title="Search"></button>
-            <a class="cart oi oi-star" href="wishlist" title="Your Wishlist"></a>
+            <form>
+                <input required
+                       type="text"
+                       @bind="SearchString"
+                       @onkeydown="@(e => {if(e.Code == "Enter"){preventDefault = true;} else {preventDefault= false;}})"
+                       @onkeydown:preventDefault="preventDefault"
+                       class="search-input"
+                       placeholder="search products.." />
+                <button type="button" @onclick="HandleSearch" class="search-icon oi oi-magnifying-glass p-2"></button>
+            </form>
+            <a class="cart oi oi-heart" href="wishlist" title="Your Wishlist"></a>
             <a class="cart oi oi-cart m-3" href="cart" title="Your Cart"></a>
         </div>
 
         <article class="content px-4">
-            @Body
+            @if (!string.IsNullOrEmpty(SearchString))
+            {
+                @if (SearchedProducts != null)
+                {
+                    <h4>Your search for @SearchString:</h4>
+                    <div class="container flex flex-column flex-wrap gap-2">
+                        @foreach (var product in SearchedProducts)
+                        {
+                            <div class="card">
+                                <a href="/product/@product.Id">
+                                    <div class="added-card">
+                                        <img src=@product.Image class="card-img-top" alt="products">
+                                    </div>
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">@product.Title</h5>
+                                    <p class="card-text">@product.Description</p>
+                                </div>
+                                <ul class="price list-group list-group-flush">
+                                    <li class="list-group-item">€@product.Price</li>
+                                </ul>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-secondary">More <span class="small-hidden">info</span></button>
+                                    <button class="btn btn-secondary">Add <span class="small-hidden">to cart</span> </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                        @if(!SearchedProducts.Any()){                             
+                            <p class="no-match">Sorry, no products matched your search. Try other searchwords.</p>
+                        }
+                }
+                else if (Search)
+                {
+                  <div>
+                    <p>Searching..</p>
+                    <svg class="searching-progress">
+                        <circle r="40%" cx="50%" cy="50%" />
+                        <circle r="40%" cx="50%" cy="50%" />
+                    </svg>
+                    <div class="searching-progress-text"></div>
+                  </div>
+                }
+            }
+            else
+            {
+                @Body
+            }
         </article>
-    <footer class="text-center text-secondary bg-light p-3">
-        <p>This is an OnlineShop with Blazor in C# by Mia Chen & Emma Gabrielsson</p>
-    </footer>
+        <footer>
+            <p>This is an OnlineShop with Blazor (C# .NET) by <span>Mia Chen</span> & <span>Emma Gabrielsson</span></p>
+        </footer>
     </main>
 </div>
 
 @code {
+
+    private string SearchString = string.Empty;
+    private Products[]? products;
+    private Products[]? SearchedProducts;
+    private bool Search = false;
+    private bool preventDefault;
+
+
+    //Function to get searched products and sort them into SearchedProducts array.
+    private async void HandleSearch()
+    {
+        Search = true;
+        products = await DataService.GetAllProducts();
+        SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(SearchString.ToLower())).ToArray<Products>();
+        StateHasChanged();
+        SearchedProducts = null;
+        Search = false;
+        SearchString = string.Empty;
+    }
 
 }
