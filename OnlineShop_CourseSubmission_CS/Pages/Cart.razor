@@ -1,8 +1,10 @@
 ﻿@page "/cart"
 
+@using OnlineShop_CourseSubmission_CS.Component;
+
 <PageTitle>OnlineShop - Your Cart</PageTitle>
 
-<h3>Your Cart</h3>
+<h3>@ShoppingCart.CartList.Count</h3>
 
 @code {
 
