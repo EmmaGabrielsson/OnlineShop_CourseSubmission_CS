@@ -1,1 +1,1 @@
-# OnlineShop_CourseSubmission_CS
+# OnlineShop_CourseSubmission_CS [![Tests](https://github.com/EmmaGabrielsson/OnlineShop_CourseSubmission_CS/actions/workflows/tests.yml/badge.svg)](https://github.com/EmmaGabrielsson/OnlineShop_CourseSubmission_CS/actions/workflows/tests.yml)
