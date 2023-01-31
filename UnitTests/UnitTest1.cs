@@ -52,18 +52,49 @@ namespace UnitTests
 
         }
         
-
         [Fact]
-        public void UpdateTotalPrice()
+        public async void UpdateCart()
         {
+            Products prod1 = new Products()
+            {
+                Id = 1,
+                Category = "new cata",
+                Price = 100,
+                Title = "Prod 1",
+                Description = "",
+                Image = ""
+            };
+
+            Products prod2 = new Products()
+            {
+                Id = 2,
+                Category = "new cata",
+                Price = 100,
+                Title = "Prod 2",
+                Description = "",
+                Image = ""
+            };
+            CartItem item1 = new CartItem()
+            {
+                CartId = 1,
+                Product = prod1,
+                Quantity = 1,
+            };
+            CartItem item2 = new CartItem()
+            {
+                CartId = 2,
+                Product = prod2,
+                Quantity = 1,
+            };
+            ShoppingCart.CartList = new List<CartItem>() { item1, item2 };
+
+            await ShoppingCart.AddToCart(1);
+            Assert.Equal(300, ShoppingCart.TotalPrice);
+            Assert.Equal(3, ShoppingCart.TotalQuantity);
 
         }
 
-        [Fact]
-        public void UpdateQuantity()
-        {
-
-        }
+        
 
         [Fact]
         public void DeleteProduct()
