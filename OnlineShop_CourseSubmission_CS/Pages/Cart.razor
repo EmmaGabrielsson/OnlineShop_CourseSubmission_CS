@@ -18,18 +18,18 @@
                                             <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                                             <h6 class="mb-0 text-muted">@ShoppingCart.TotalQuantity items</h6>
                                         </div>
-                                        @foreach (CartItem Item in ShoppingCart.CartList)
+                                        @foreach (CartItem item in ShoppingCart.CartList)
                                         {
                                         <hr class="my-4">
 
                                         <div class="row mb-4 d-flex justify-content-between align-items-center">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <img src="@Item.Product.Image"
-                                                 class="img-fluid rounded-3" alt="@Item.Product.Title">
+                                                <img src="@item.Product.Image"
+                                                 class="img-fluid rounded-3" alt="@item.Product.Title">
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                                <h6 class="text-muted">@Item.Product.Category</h6>
-                                                <h6 class="text-black mb-0">@Item.Product.Title</h6>
+                                                <h6 class="text-muted">@item.Product.Category</h6>
+                                                <h6 class="text-black mb-0">@item.Product.Title</h6>
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                 <button class="btn btn-link px-2"
@@ -38,8 +38,8 @@
                                                     <i class="fas fa-minus"></i>
                                                 </button>
 
-                                                <input id="form1" min="0" name="quantity" value="@Item.Quantity" type="number"
-                                                    @onchange="(ChangeEventArgs e) => QuantityChanged(e, Item.Product)"
+                                                <input id="form1" min="0" name="quantity" value="@item.Quantity" type="number"
+                                                    @onchange="(ChangeEventArgs e) => QuantityChanged(e, item.Product)"
                                                     class="form-control form-control-sm" />
 
                                                 <button class="btn btn-link px-2"
@@ -48,9 +48,9 @@
                                                 </button>
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <h6 class="mb-0">€ @Item.Product.Price</h6>
+                                                <h6 class="mb-0">€ @item.Product.Price</h6>
                                             </div>
-                                            <button class="btn btn-link px-2" @onclick="()=>ShoppingCart.Delete()">Remove</button>
+                                            <button class="btn btn-link px-2" @onclick="()=> ShoppingCart.Delete(item.Product.Id)">Remove</button>
                                         </div>
                                         }
 
