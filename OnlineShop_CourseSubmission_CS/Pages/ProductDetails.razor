@@ -6,24 +6,30 @@
 
 @if (product!=null){
 <div class="container">
-	<div>
-		<img src="@product.Image" alt="@product.Title" />
+	<div class="backtoshop">
+		<a class="btn btn-secondary" href="/allproducts">Back to Shop</a>
 	</div>
-	<div>
-		<h2>@product.Title</h2>
-		<h5>Category: @product.Category</h5>
-		<h5>Rate: @product.Rating.Rate</h5>
-		<h5>Viewed by @product.Rating.Count People</h5>
-		<h4>@product.Price</h4>
-		<div>@product.Description</div>
-		<div class="card-body d-flex justify-content-between">
-				<button class="btn btn-secondary" @onclick="()=>ShoppingCart.AddToCart(product.Id)">Add <span class="small-hidden">to cart</span> </button>
-				<button class="btn btn-secondary" @onclick="()=>WishItem.addtoWish(product.Id)">Add <span class="small-hidden">to cart</span> </button>
+	<h2 class="title-section">@product.Title</h2>
+	<div class="detail-container">
+		<div class="two-column">
+			<img class="detail-image" src="@product.Image" alt="@product.Title" />
+		</div>
+		<div class="two-column">
+			<h3>@product.Title</h3>
+			<h5>Category: @product.Category</h5>
+			<h5>Rate: @product.Rating.Rate</h5>
+			<h5>Viewed by @product.Rating.Count People</h5>
+			<hr />
+			<h4>@product.Price</h4>
+			<div>@product.Description</div>
+			<div class="card-body d-flex justify-content-between">
+					<button class="btn btn-secondary" @onclick="()=>ShoppingCart.AddToCart(product.Id)">Add <span class="small-hidden">to cart</span> </button>
+					<button class="btn btn-secondary" @onclick="()=>WishItem.addtoWish(product.Id)">Add <span class="small-hidden">to cart</span> </button>
 
+			</div>
 		</div>
 	</div>
-	<a class="btn btn-secondary" href="/allproducts">Back to Shop</a>
-
+	
 </div>
 }
 
