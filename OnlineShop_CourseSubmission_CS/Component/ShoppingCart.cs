@@ -10,6 +10,7 @@ namespace OnlineShop_CourseSubmission_CS.Component
 		public static List<CartItem> CartList = new();
 		public static decimal TotalPrice = 0;
 		public static int TotalQuantity = 0;
+		public static decimal TotalExShipping = 0;
 
 		public static async Task AddToCart(int productId)
 		{
@@ -41,13 +42,16 @@ namespace OnlineShop_CourseSubmission_CS.Component
 		public static void UpdateCart()
 		{
 			decimal totalPrice = 0;
+			decimal totalExShipping = 0;
 			int totalQuantity = 0;
             foreach (CartItem Item in ShoppingCart.CartList)
             {
-				totalPrice += Item.Quantity * Item.Product.Price;
+                totalExShipping += Item.Quantity * Item.Product.Price;
+				totalPrice = totalExShipping + 5;
 				totalQuantity += Item.Quantity;
             }
 			TotalPrice = totalPrice;
+			TotalExShipping = totalExShipping;
 			TotalQuantity = totalQuantity;
         }
 

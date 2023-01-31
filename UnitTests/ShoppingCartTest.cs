@@ -91,7 +91,8 @@ namespace UnitTests
             ShoppingCart.CartList = new List<CartItem>() { item1, item2 };
 
             await ShoppingCart.AddToCart(1);
-            Assert.Equal(300, ShoppingCart.TotalPrice);
+            Assert.Equal(300, ShoppingCart.TotalExShipping);
+            Assert.Equal(305, ShoppingCart.TotalPrice);
             Assert.Equal(3, ShoppingCart.TotalQuantity);
 
         }
@@ -137,7 +138,8 @@ namespace UnitTests
 
             Assert.Single(ShoppingCart.CartList);
             Assert.Equal(1, ShoppingCart.TotalQuantity);
-            Assert.Equal(100, ShoppingCart.TotalPrice);
+            Assert.Equal(100, ShoppingCart.TotalExShipping);
+            Assert.Equal(105, ShoppingCart.TotalPrice);
 
         }
     }

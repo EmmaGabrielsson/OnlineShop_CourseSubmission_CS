@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop_CourseSubmission_CS", "OnlineShop_CourseSubmission_CS\OnlineShop_CourseSubmission_CS.csproj", "{B6BE4ECD-D28E-466E-B69F-C2C99E4B9C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{41BBEAA4-4C16-4D07-B6CA-D2657F2AE637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{41BBEAA4-4C16-4D07-B6CA-D2657F2AE637}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
