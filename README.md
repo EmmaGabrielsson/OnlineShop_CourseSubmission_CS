@@ -3,7 +3,7 @@
 ## Introduction
 
 This project is an online shop app built with Blazor WebAssembly and includes 
-unit tests for various features. The app fetches products from an API and displays
+unit tests for various features. The app fetches products from an API (https://fakestoreapi.com/) and displays
 them on the page. Users can navigate through the menu or search for different 
 products using a search bar. The app also includes a shopping cart and a wishlist, 
 with functions such as adding and removing items, updating the total price and quantity, 
