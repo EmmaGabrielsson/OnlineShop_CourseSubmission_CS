@@ -13,10 +13,13 @@ namespace OnlineShop_CourseSubmission_CS.Component
 
 		public static async Task AddToCart(int productId)
 		{
-
 			DataService data = new DataService();
 			Products[] allProd = await data.GetAllProducts();
 			Products? product = allProd.FirstOrDefault(x => x.Id == productId);
+			if (product == null)
+			{
+				return;
+			}
 			CartItem? foundCartItem = CartList.Find(cartItem => cartItem.Product.Id == productId);
 			if (foundCartItem == null)
 			{
