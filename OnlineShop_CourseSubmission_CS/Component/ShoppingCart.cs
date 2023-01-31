@@ -72,11 +72,18 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			}
 			UpdateCart();
         }
-        public static async Task Delete()
+        public static void Delete(int productId)
 		{
-			
+			CartItem? item = CartList.FirstOrDefault(x => x.Product.Id == productId);
+			if (item != null)
+			{
+				CartList.Remove(item);
+				UpdateCart();
+			}
 		}
-
-
-    }
+		public static void Empty()
+		{
+			CartList = new List<CartItem>();
+		}
+	}
 }
