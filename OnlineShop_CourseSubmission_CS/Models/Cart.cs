@@ -3,7 +3,8 @@
     public class Cart
     {
         public int UserId { get; set; }
-        public int TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
+        public int TotalQuantity { get; set; }
         public CartItem[] CartItem { get; set; }
     }
 }
