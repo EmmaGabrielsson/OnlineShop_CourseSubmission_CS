@@ -9,8 +9,8 @@ and update products in a cart. There is also the option to add items to a wishli
 The cart functionality has been tested with unit tests.
 
 ## Project Structure
-The solution includes both the Blazor WebAssembly online shop project and 
-unit tests for the cart functionality in the same solution.
+The solution includes both the Blazor WebAssembly OnlineShop project and 
+Unit Tests for the cart functionality in the same solution.
 
 ## Getting Started
 To run this project, you will need to have the following installed on your machine:
@@ -36,12 +36,6 @@ To run this project, you will need to have the following installed on your machi
   - Update total price and quantity
 - Wishlist with ability to add items
 - Unit tests for the shopping cart
-
-## Technology Stack
-- Blazor WebAssembly
-- .NET 7.0
-- Visual Studio
-- NuGet packages
 
 ## Conclusion
 This Blazor WebAssembly online shop app provides a simple and intuitive 
