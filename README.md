@@ -8,7 +8,7 @@ products using a search bar. The app includes the ability to add, remove,
 and update products in a cart. There is also the option to add items to a wishlist. 
 The cart functionality has been tested with unit tests.
 
-##Project Structure
+## Project Structure
 The solution includes both the Blazor WebAssembly online shop project and 
 unit tests for the cart functionality in the same solution.
 
@@ -24,13 +24,6 @@ To run this project, you will need to have the following installed on your machi
 4. Build the solution by running dotnet build from the command line in the root directory of the solution.
 5. Run the tests by right-clicking on the test project and choosing "Run Tests" or by running dotnet test from the command line in the test project's directory.
 6. Run the project by clicking on the "Start" button or by pressing F5
-
-## Unit Tests
-The project includes unit tests for features including the shopping cart. To run the tests, follow these steps:
-1. Open the solution in Visual Studio or Visual Studio Code
-2. Right-click on the solution and select "Restore NuGet Packages"
-3. Right-click on the solution and select "Build Solution"
-4. Right-click on the test project and select "Run Tests"
 
 ## Features
 - Fetch products from an API
