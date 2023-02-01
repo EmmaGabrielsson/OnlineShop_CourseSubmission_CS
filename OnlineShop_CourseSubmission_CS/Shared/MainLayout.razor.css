@@ -37,7 +37,8 @@ main {
         overflow: hidden;
         text-overflow: ellipsis;
     }
- form {
+
+ .form {
      position: relative;
  }
 
