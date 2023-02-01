@@ -27,7 +27,8 @@
             </form>
             <a class="btn-icon oi oi-heart" href="wishlist" title="Your Wishlist"></a>
             <a class="btn-icon oi oi-cart m-3" href="cart" title="Your Cart">
-                @if (updateCartCount != 0) {
+                @if (ShoppingCart.TotalQuantity != 0) {
+                    updateCartCount = ShoppingCart.TotalQuantity;
                     <span class="cart-count"> @updateCartCount</span>
                 }
             </a>
@@ -112,7 +113,7 @@
     private Products[]? products;
     private bool Search = false;
     private bool preventDefault;
-    private int updateCartCount = ShoppingCart.TotalQuantity;
+    private int updateCartCount;
 
 
     //Function to get searched products and sort them into SearchedProducts array.
