@@ -135,6 +135,38 @@ a, .btn-link {
     text-align: center;
 }
 
+.more-info-btn {
+    text-decoration: none;
+    font-size: 16px;
+    padding: 4px;
+    border: 2px solid #00414aff;
+    border-radius: 5px;
+    color: black;
+    background-color: #00768789;
+    text-align: center;
+}
+
+    .more-info-btn:hover {
+        color: black;
+        background-color: #046c7ccb;
+    }
+
+.card-button {
+    margin: 0 8px;
+    padding: 3px;
+    border: none;
+    color: #00414aff;
+    background-color: transparent;
+}
+
+    .card-button:hover {
+        color: white;
+        border-radius: 5px;
+        padding: 2px;
+        border: 1px solid #00414aff;
+        background-color: #046c7ccb;
+    }
+
 .list-group-item {
     text-align: end;
     font-size: larger;
