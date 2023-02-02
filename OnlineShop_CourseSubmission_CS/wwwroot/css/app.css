@@ -220,6 +220,22 @@ a, .btn-link {
     text-align: center;
 }
 
+.cart-card {
+    position: relative;
+}
+
+.cart-pro-price {
+    position: absolute;
+    left: 1rem;
+}
+
+@media (min-width: 768px) {
+    .qty-input {
+        position: absolute;
+        width: 50px;
+    }
+}
+
 @media (min-width: 850px) {
     .detail-container {
         flex-direction: row;
