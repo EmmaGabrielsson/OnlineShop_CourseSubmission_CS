@@ -68,8 +68,15 @@ main {
     padding: 3px;
 }
 
-.btn-icon:hover {
+.btn-icon:hover, .empty-heart:hover, .fill-heart:hover {
     color: #004f5bff;
+}
+
+.empty-heart, .fill-heart {
+    width: 28px;
+    height: 28px;
+    color: #007687;
+    padding-bottom: 4px;
 }
 
 .cart-count {
