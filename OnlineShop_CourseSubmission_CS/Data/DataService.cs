@@ -1,7 +1,5 @@
 ﻿using OnlineShop_CourseSubmission_CS.Component;
 using OnlineShop_CourseSubmission_CS.Components;
-using OnlineShop_CourseSubmission_CS.Pages;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -9,12 +7,9 @@ namespace OnlineShop_CourseSubmission_CS.Data
 {
     public class DataService
     {
-     
         public async Task<Products[]> GetAllProducts()
         {
-            
             HttpClient client = new();
-
             try
             {
                 if (DataStorage.ProductList == null){
