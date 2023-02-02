@@ -24,7 +24,7 @@
 			<div>@product.Description</div>
 			<div class="card-body d-flex justify-content-between">
 					<button class="btn btn-secondary" @onclick="()=>ShoppingCart.AddToCart(product.Id)">Add <span class="small-hidden">to cart</span> </button>
-					<button class="btn btn-secondary" @onclick="()=>WishItem.addtoWish(product.Id)">Add <span class="small-hidden">to cart</span> </button>
+					<button class="btn btn-secondary" @onclick="()=>WishItem.AddToWish(product.Id)">Add <span class="small-hidden">to cart</span> </button>
 
 			</div>
 		</div>
