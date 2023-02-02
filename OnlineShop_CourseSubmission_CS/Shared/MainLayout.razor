@@ -5,31 +5,28 @@
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
 @using System.Linq;
-@inject DataService DataService;
 
 
 <div class="page">
-    <div class="sidebar">
+    <div class="sidebar" @onclick="()=> SearchString = string.Empty">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
-            <form>
+            <div class="form">
                 <input required
                        type="text"
                        @bind="SearchString"
-                       @onkeydown="@(e => {if(e.Code == "Enter"){preventDefault = true;} else {preventDefault= false;}})"
-                       @onkeydown:preventDefault="preventDefault"
+                       @onkeyup="Enter"
                        class="search-input"
                        placeholder="search products.." />
-                <button type="button" @onclick="HandleSearch" class="search-icon oi oi-magnifying-glass p-2"></button>
-            </form>
+                <button type="button" @onclick="()=>HandleSearch(SearchString)" class="search-icon oi oi-magnifying-glass p-2"></button>
+            </div>
             <a class="btn-icon oi oi-heart" href="wishlist" title="Your Wishlist"></a>
             <a class="btn-icon oi oi-cart m-3" href="cart" title="Your Cart">
                 @if (ShoppingCart.TotalQuantity != 0) {
-                    updateCartCount = ShoppingCart.TotalQuantity;
-                    <span class="cart-count"> @updateCartCount</span>
+                    <span class="cart-count">@ShoppingCart.TotalQuantity</span>
                 }
             </a>
         </div>
@@ -83,17 +80,6 @@
                         <p class="no-match">Sorry, no products matched your search. Try other searchwords.</p>
                     }
                 }
-                else if (Search)
-                {
-                    <div>
-                        <p>Searching..</p>
-                        <svg class="searching-progress">
-                            <circle r="40%" cx="50%" cy="50%" />
-                            <circle r="40%" cx="50%" cy="50%" />
-                        </svg>
-                        <div class="searching-progress-text"></div>
-                    </div>
-                }
             }
             else
             {
@@ -108,24 +94,25 @@
 
 @code {
 
-    private string SearchString = string.Empty;
+    private string? SearchString { get; set; }
     private Products[]? SearchedProducts;
-    private Products[]? products;
-    private bool Search = false;
-    private bool preventDefault;
-    private int updateCartCount;
 
-
-    //Function to get searched products and sort them into SearchedProducts array.
-    private async void HandleSearch()
+    //Function to get searched products and filter them into SearchedProducts array.
+    private async Task HandleSearch(string keyword)
     {
-        Search = true;
-        products = await DataService.GetAllProducts();
-        SearchedProducts = products.Where<Products>(prod => prod.Title.ToLower().Contains(SearchString.ToLower())).ToArray<Products>();
-        StateHasChanged();
-        SearchedProducts = null;
-        Search = false;
-        SearchString = string.Empty;
+        DataService data = new DataService();
+        Products[] AllProducts = await data.GetAllProducts();
+        SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();
     }
 
+    private void Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            var s = SearchString;
+            HandleSearch(s);
+        }
+    }
+    
 }
+
