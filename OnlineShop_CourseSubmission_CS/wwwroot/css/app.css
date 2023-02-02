@@ -104,6 +104,18 @@ h3 {
     margin: 1rem 0 1.5rem 0;
 }
 
+.cart-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
 .cartItemsList {
     display: flex;
     flex-direction: row;
@@ -117,10 +129,7 @@ h3 {
     max-width: 280px;
     margin-bottom: 2rem;
     padding: 1rem;
-}
-
-.card-body {
-    height: fit-content;
+    margin: .7rem;
 }
 
 .added-card {
@@ -134,8 +143,7 @@ h3 {
 
 .card-img-top {
     display: block;
-    max-width: 270px;
-    max-height: 370px;
+    width: 100%;
     margin: 1.5rem 0;
 }
 
@@ -235,27 +243,11 @@ h3 {
     text-align: center;
 }
 
-.cart-card {
-    position: relative;
-}
-
-.cart-pro-price {
-    position: absolute;
-    left: 1rem;
-}
-
 @media (min-width: 768px) {
-    .qty-input {
-        position: absolute;
-        width: 50px;
-    }
     .cartItemsList {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
-    }
-    .card-body:first-of-type {
-        height: 300px;
     }
 }
 
@@ -267,21 +259,15 @@ h3 {
     .two-column {
         width: 50%;
     }
-    .card {
-        max-height: fit-content;
-    }
     .card-title {
-        padding-top: 0cm;
-        font-weight: bolder;
         font-size: x-large;
-        text-align: center;
     }
-
     .card-text {
         display: block;
         height: 100%;
         font-size: large;
-        text-align: center;
     }
-
+    .c-body {
+        height: 300px;
+    }
 }

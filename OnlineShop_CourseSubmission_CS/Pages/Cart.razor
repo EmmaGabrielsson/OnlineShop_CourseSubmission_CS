@@ -5,11 +5,11 @@
 
 <PageTitle>OnlineShop - Your Cart</PageTitle>
 
-    <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+<section class="h-100 h-custom" style="background-color: #046c7ccb;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
-                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="cart-card card-registration card-registration-2" style="border-radius: 15px;">
                         <div class="card-body p-0">
                             <div class="row g-0">
                                 <div class="col-lg-8">
@@ -22,7 +22,7 @@
                                         {
                                         <hr class="my-4">
 
-                                        <div class="row mb-4 d-flex justify-content-between align-items-center cart-card">
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
                                                 <img src="@item.Product.Image"
                                                  class="img-fluid rounded-3" alt="@item.Product.Title">
@@ -31,7 +31,7 @@
                                                 <h6 class="text-muted">@item.Product.Category</h6>
                                                 <h6 class="text-black mb-0">@item.Product.Title</h6>
                                             </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex qty-input">
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                 <button class="btn btn-link px-2"
                                                     onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                                 >

@@ -45,7 +45,7 @@ main {
 .search-input {
     border-radius: 10px;
     border: 1px solid #0076878e;
-    width: 220px;
+    width: 180px;
     padding: 3.5px;
 }
 
@@ -183,8 +183,14 @@ footer {
     footer {
         left: 250px;
     }
+
     .searching-progress-text {
         inset: calc(32vh + 4rem) 0 auto 16.5rem;
     }
+}
 
+@media (min-width: 800px){
+    .search-input {
+        width: 250px;
+    }
 }
