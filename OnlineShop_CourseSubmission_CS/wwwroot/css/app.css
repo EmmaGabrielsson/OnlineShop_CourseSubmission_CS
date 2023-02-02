@@ -99,14 +99,28 @@ a, .btn-link {
         content: var(--blazor-load-percentage-text, "Loading");
     }
 
+h3 {
+    text-align: center;
+    margin: 1rem 0 1.5rem 0;
+}
+
 .cartItemsList {
-    width: 33%;
-    display: inline-block;
-    vertical-align: top;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
     background-color: rgb(247, 247, 247);
+    max-width: 280px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.card-body {
+    height: fit-content;
 }
 
 .added-card {
@@ -114,24 +128,25 @@ a, .btn-link {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    padding: 1rem;
 }
 
 .card-img-top {
     display: block;
-    max-width: 300px;
-    max-height: 400px;
-    margin: auto;
+    max-width: 270px;
+    max-height: 370px;
+    margin: 1.5rem 0;
 }
 
 .card-title {
     padding-top: 0cm;
     font-weight: bolder;
-    font-size: x-large;
     text-align: center;
 }
 
 .card-text {
-    font-size: large;
+    display: none;
     text-align: center;
 }
 
@@ -234,6 +249,14 @@ a, .btn-link {
         position: absolute;
         width: 50px;
     }
+    .cartItemsList {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .card-body:first-of-type {
+        height: 300px;
+    }
 }
 
 @media (min-width: 850px) {
@@ -244,4 +267,21 @@ a, .btn-link {
     .two-column {
         width: 50%;
     }
+    .card {
+        max-height: fit-content;
+    }
+    .card-title {
+        padding-top: 0cm;
+        font-weight: bolder;
+        font-size: x-large;
+        text-align: center;
+    }
+
+    .card-text {
+        display: block;
+        height: 100%;
+        font-size: large;
+        text-align: center;
+    }
+
 }

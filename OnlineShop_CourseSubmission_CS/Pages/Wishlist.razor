@@ -4,6 +4,9 @@
 
 <PageTitle>OnlineShop - Wishlist</PageTitle>
 
+
+<h4>Your Wishlist:</h4>
+
 @foreach(Products pro in WishItem.WishList)
 {
 	<div class="cartItemsList">
@@ -40,6 +43,12 @@
 				</button>
 			</div>
 		</div>
+	</div>
+}
+@if (!WishItem.WishList.Any())
+{
+	<div>
+		<p>You don´t have any saved products in your wishlist yet.</p>
 	</div>
 }
 

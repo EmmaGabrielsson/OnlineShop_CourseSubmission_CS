@@ -53,11 +53,10 @@
             {
                 @if (SearchedProducts != null)
                 {
-                    <h4>Your search for @SearchString:</h4>
-                    <div class="container flex flex-column flex-wrap gap-2">
+                    <h3>Your search for @SearchString:</h3>
+                        <div class="cartItemsList">
                         @foreach (var item in SearchedProducts)
                         {
-                            <div class="cartItemsList">
                                 <div class="card">
                                     <a href="/product/@item.Id">
                                         <div class="added-card">
@@ -105,9 +104,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         }
-                    </div>
+                        </div>
                     @if (!SearchedProducts.Any()) {
                         <p class="no-match">Sorry, no products matched your search. Try other searchwords.</p>
                     }

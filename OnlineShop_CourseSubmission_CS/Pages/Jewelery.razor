@@ -13,9 +13,9 @@
 
 @if (jeweleryProducts != null)
 {
-     foreach (var item in jeweleryProducts)
+	<div class="cartItemsList">
+     @foreach (var item in jeweleryProducts)
 	{
-		<div class="cartItemsList">
 			<div class="card">
 				<a href="/product/@item.Id">
 					<div class="added-card">
@@ -64,8 +64,8 @@
                     </div>
                 </div>
 			</div>
-		</div>
 	}
+	</div>
 }
 
 
