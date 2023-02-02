@@ -152,6 +152,7 @@ a, .btn-link {
     }
 
 .card-button {
+    position: relative;
     margin: 0 8px;
     padding: 3px;
     border: none;
@@ -166,6 +167,27 @@ a, .btn-link {
         border: 1px solid #00414aff;
         background-color: #046c7ccb;
     }
+
+.removeheart {
+    color: #7a7979;
+}
+
+.remove {
+    color: #750232;
+    position: absolute;
+    right: 0.2rem;
+}
+
+    .remove:hover {
+        color: #cb0055;
+    }
+
+.removeheart:hover {
+    background-color: rgb(247, 247, 247);
+    color: #cb0055;
+    border: none;
+}
+
 
 .list-group-item {
     text-align: end;
