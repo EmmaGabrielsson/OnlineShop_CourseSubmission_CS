@@ -205,11 +205,9 @@ a, .btn-link {
 
 .detail-container {
     display: flex;
-    flex-direction: row;
-}
-
-.two-column{
-    width:50%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .detail-image {
@@ -220,4 +218,14 @@ a, .btn-link {
 }
 .backtoshop {
     text-align: center;
+}
+
+@media (min-width: 850px) {
+    .detail-container {
+        flex-direction: row;
+        justify-content: normal;
+    }
+    .two-column {
+        width: 50%;
+    }
 }
