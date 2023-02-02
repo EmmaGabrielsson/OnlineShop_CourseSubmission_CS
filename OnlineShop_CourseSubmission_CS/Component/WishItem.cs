@@ -6,7 +6,7 @@ namespace OnlineShop_CourseSubmission_CS.Component
 	public class WishItem
 	{
 		public static List<Products> WishList = new();
-		public static async void addtoWish(int productId)
+		public static async void AddToWish(int productId)
 		{
 			DataService data = new DataService();
 			Products[] allProd = await data.GetAllProducts();
@@ -23,5 +23,14 @@ namespace OnlineShop_CourseSubmission_CS.Component
 				WishList.Add(addedWish);
 			}
 		}
-	}
+        public static void Remove(int productId)
+        {
+            Products? product = WishList.FirstOrDefault(x => x.Id == productId);
+            if (product != null)
+            {
+                WishList.Remove(product);
+            }
+        }
+    }
+
 }
