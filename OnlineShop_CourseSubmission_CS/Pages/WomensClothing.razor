@@ -61,5 +61,4 @@
         products = await DataService.GetAllProducts();
         womensProducts = products.Where<Products>(prod => prod.Category == "women's clothing").ToArray<Products>();
     }
-
 }

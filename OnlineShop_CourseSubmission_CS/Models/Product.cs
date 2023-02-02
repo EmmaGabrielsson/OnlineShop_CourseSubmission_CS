@@ -19,5 +19,4 @@ namespace OnlineShop_CourseSubmission_CS.Components
 		[JsonPropertyName("rating")]
 		public Rating? Rating { get; set; }
     }
-
 }

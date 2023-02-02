@@ -5,8 +5,8 @@
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
 @inject DataService DataService
-<PageTitle>OnlineShop - Men´s Clothing</PageTitle>
 
+<PageTitle>OnlineShop - Men´s Clothing</PageTitle>
 
 <h3>Products - Men´s Clothing</h3>
 
@@ -60,5 +60,4 @@
         products = await DataService.GetAllProducts();
         mensProducts = products.Where<Products>(prod => prod.Category == "men's clothing").ToArray<Products>();
     }
-
 }

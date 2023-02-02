@@ -140,7 +140,6 @@ namespace UnitTests
             Assert.Equal(1, ShoppingCart.TotalQuantity);
             Assert.Equal(100, ShoppingCart.TotalExShipping);
             Assert.Equal(105, ShoppingCart.TotalPrice);
-
         }
     }
 }
