@@ -55,10 +55,8 @@
 			</div>
 		</div>
 	</div>
-	
 </div>
 }
-
 
 @code {
 	private Products[]? products;
@@ -73,8 +71,5 @@
 		if (id!=null){
 			product = products.FirstOrDefault(p => p.Id == Int32.Parse(id));
 		}
-
 	}
-
-	
 }

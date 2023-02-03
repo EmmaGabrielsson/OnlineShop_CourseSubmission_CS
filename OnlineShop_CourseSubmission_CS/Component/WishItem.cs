@@ -32,5 +32,4 @@ namespace OnlineShop_CourseSubmission_CS.Component
             }
         }
     }
-
 }

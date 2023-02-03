@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Blazored.LocalStorage;
-using OnlineShop_CourseSubmission_CS.Components;
+﻿using OnlineShop_CourseSubmission_CS.Components;
 using OnlineShop_CourseSubmission_CS.Data;
 
 namespace OnlineShop_CourseSubmission_CS.Component
