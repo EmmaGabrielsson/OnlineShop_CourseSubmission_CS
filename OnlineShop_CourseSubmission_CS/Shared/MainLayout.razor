@@ -135,11 +135,11 @@
         SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();
     }
 
+    //Function to run when enterkey is pressed on search products
     private async Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            //var s = SearchString;
             await HandleSearch(SearchString);
         }
     }
