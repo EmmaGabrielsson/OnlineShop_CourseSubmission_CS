@@ -135,7 +135,7 @@
         SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();
     }
 
-    private async void Enter(KeyboardEventArgs e)
+    private async Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
