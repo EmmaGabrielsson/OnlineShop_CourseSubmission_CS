@@ -5,11 +5,11 @@
 
 <PageTitle>OnlineShop - Your Cart</PageTitle>
 
-    <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+<section class="h-100 h-custom" style="background-color: #046c7ccb;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
-                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="cart-card card-registration card-registration-2" style="border-radius: 15px;">
                         <div class="card-body p-0">
                             <div class="row g-0">
                                 <div class="col-lg-8">
@@ -47,7 +47,7 @@
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                             </div>
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 cart-pro-price">
                                                 <h6 class="mb-0">€ @item.Product.Price</h6>
                                             </div>
                                             <button class="btn btn-secondary px-2" @onclick="()=> ShoppingCart.Delete(item.Product.Id)">Delete</button>
