@@ -42,7 +42,7 @@
             }
                 <a class="btn-icon oi oi-cart m-3" href="cart" title="Your Cart">
                 @if (ShoppingCart.TotalQuantity != 0) {
-                    <span class="cart-count">@ShoppingCart.TotalQuantity</span>
+                        <span class="cart-count">@ShoppingCart.TotalQuantity</span>
                 }
             </a>
             </div>
@@ -127,11 +127,14 @@
     private Products[]? SearchedProducts;
 
     //Function to get searched products and filter them into SearchedProducts array.
-    private async Task HandleSearch(string keyword)
+    private async Task HandleSearch(string? keyword)
     {
-        DataService data = new DataService();
-        Products[] AllProducts = await data.GetAllProducts();
-        SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();
+        if (keyword != null)
+        {
+            DataService data = new DataService();
+            Products[] AllProducts = await data.GetAllProducts();
+            SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();           
+        }
     }
 
     //Function to run when enterkey is pressed on search products
