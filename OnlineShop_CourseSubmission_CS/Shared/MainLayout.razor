@@ -71,7 +71,7 @@
                                         <li class="list-group-item">€@item.Price</li>
                                     </ul>
                                     <div class="card-body d-flex justify-content-between">
-                                        <a class="more-info-btn" href="/product/@item.Id">More <span class="small-hidden">info</span></a>
+                                    <a class="more-info-btn" @onclick="()=> SearchString = string.Empty" href="/product/@item.Id">More <span class="small-hidden">info</span></a>
                                         <div>
                                             @if (!WishItem.WishList.Contains(item))
                                             {
