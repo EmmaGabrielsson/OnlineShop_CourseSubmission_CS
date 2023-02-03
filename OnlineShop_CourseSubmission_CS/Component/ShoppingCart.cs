@@ -1,4 +1,5 @@
-﻿using OnlineShop_CourseSubmission_CS.Components;
+﻿using System.Reflection.Metadata.Ecma335;
+using OnlineShop_CourseSubmission_CS.Components;
 using OnlineShop_CourseSubmission_CS.Data;
 
 namespace OnlineShop_CourseSubmission_CS.Component
@@ -9,7 +10,8 @@ namespace OnlineShop_CourseSubmission_CS.Component
 		public static decimal TotalPrice = 0;
 		public static int TotalQuantity = 0;
 		public static decimal TotalExShipping = 0;
-
+		
+		//function of add products to shopping cart
 		public static async Task AddToCart(int productId)
 		{
 			DataService data = new DataService();
@@ -19,6 +21,8 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			{
 				return;
 			}
+
+			//check if shoppingcart already has the product that is clicked
 			CartItem? foundCartItem = CartList.Find((cartItem) =>
 			{
 				if (cartItem.Product != null)
@@ -29,7 +33,7 @@ namespace OnlineShop_CourseSubmission_CS.Component
 					return false;	
 			});
 
-
+			//if the product is not in shopping cart, push the product to cartItem; if exist, only change the quantity of the product. Then update the shoppingcart
 			if (foundCartItem == null)
 			{
 				CartItem newCartItem = new CartItem()
@@ -47,6 +51,8 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			}
 			UpdateCart();
         }
+
+		//function of updateshopping cart for the total price, total quantity
 		public static void UpdateCart()
 		{
 			decimal totalPrice = 0;
@@ -67,9 +73,9 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			TotalQuantity = totalQuantity;
         }
 
+		//function of when input of quantity changes, update shoppingcart.
 		public static void UpdateCart(Products prod, int newQuantity)
 		{
-			Console.WriteLine(newQuantity);
             CartItem? item = CartList.FirstOrDefault((cartItem) =>
             {
                 if (cartItem.Product != null)
@@ -98,8 +104,11 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			}
 			UpdateCart();
         }
+
+		//function of delete products
         public static void Delete(int productId)
 		{
+			//try to find the aimed product
 			CartItem? item = CartList.FirstOrDefault((cartItem) =>
             {
                 if (cartItem.Product != null)
@@ -111,12 +120,15 @@ namespace OnlineShop_CourseSubmission_CS.Component
 					return false;
                 
             });
+			//if found, delete it. and update cart
             if (item != null)
 			{
 				CartList.Remove(item);
 				UpdateCart();
 			}
 		}
+		
+		//create new list with empty for test purpose 
 		public static void Empty()
 		{
 			CartList = new List<CartItem>();
