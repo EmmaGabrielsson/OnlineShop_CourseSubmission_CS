@@ -17,7 +17,7 @@
             <div class="form">
                 <input required
                        type="text"
-                       @bind="SearchString"
+                       @bind="SearchString" @bind:event="oninput"
                        @onkeyup="Enter"
                        class="search-input"
                        placeholder="search products.." />
@@ -139,8 +139,7 @@
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            var s = SearchString;
-            await HandleSearch(s);
+            await HandleSearch(SearchString);
         }
     }
     
