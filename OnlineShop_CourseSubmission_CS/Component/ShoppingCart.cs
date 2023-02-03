@@ -19,7 +19,17 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			{
 				return;
 			}
-			CartItem? foundCartItem = CartList.Find(cartItem => cartItem.Product.Id == productId);
+			CartItem? foundCartItem = CartList.Find((cartItem) =>
+			{
+				if (cartItem.Product != null)
+				{
+					return
+					cartItem.Product.Id == productId;
+				} else 
+					return false;	
+			});
+
+
 			if (foundCartItem == null)
 			{
 				CartItem newCartItem = new CartItem()
@@ -42,11 +52,15 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			decimal totalPrice = 0;
 			decimal totalExShipping = 0;
 			int totalQuantity = 0;
+
             foreach (CartItem Item in ShoppingCart.CartList)
             {
-                totalExShipping += Item.Quantity * Item.Product.Price;
-				totalPrice = totalExShipping + 5;
-				totalQuantity += Item.Quantity;
+				if (Item.Product != null) 
+				{ 
+					totalExShipping += Item.Quantity * Item.Product.Price;
+					totalPrice = totalExShipping + 5;
+					totalQuantity += Item.Quantity;
+                }
             }
 			TotalPrice = totalPrice;
 			TotalExShipping = totalExShipping;
@@ -56,8 +70,18 @@ namespace OnlineShop_CourseSubmission_CS.Component
 		public static void UpdateCart(Products prod, int newQuantity)
 		{
 			Console.WriteLine(newQuantity);
-            CartItem? item = CartList.FirstOrDefault(cartItem => cartItem.Product.Id == prod.Id);
-			if (item == null)
+            CartItem? item = CartList.FirstOrDefault((cartItem) =>
+            {
+                if (cartItem.Product != null)
+                {
+                    return
+                    cartItem.Product.Id == prod.Id;
+                }
+                else
+					return false;
+                
+            });
+            if (item == null)
 			{
 				item = new CartItem()
 				{
@@ -76,8 +100,18 @@ namespace OnlineShop_CourseSubmission_CS.Component
         }
         public static void Delete(int productId)
 		{
-			CartItem? item = CartList.FirstOrDefault(x => x.Product.Id == productId);
-			if (item != null)
+			CartItem? item = CartList.FirstOrDefault((cartItem) =>
+            {
+                if (cartItem.Product != null)
+                {
+                    return
+                    cartItem.Product.Id == productId;
+                }
+                else
+					return false;
+                
+            });
+            if (item != null)
 			{
 				CartList.Remove(item);
 				UpdateCart();

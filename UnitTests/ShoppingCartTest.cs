@@ -41,14 +41,30 @@ namespace UnitTests
             await ShoppingCart.AddToCart(1);
             Assert.Single(ShoppingCart.CartList);
 
-            CartItem? cartItem = ShoppingCart.CartList.FirstOrDefault(x => x.Product.Id == 1);
+            CartItem? cartItem = ShoppingCart.CartList.FirstOrDefault((item) =>
+            {
+                if (item.Product != null)
+                {
+                    return item.Product.Id == 1;
+                }else 
+                    return false;
+
+            });
             Assert.NotNull(cartItem);
             Assert.Equal(2, cartItem.Quantity);
 
             await ShoppingCart.AddToCart(3);
             Assert.Single(ShoppingCart.CartList);
 
-            CartItem? cartItem3 = ShoppingCart.CartList.FirstOrDefault(y => y.Product.Id == 3);
+            CartItem? cartItem3 = ShoppingCart.CartList.FirstOrDefault((item) =>
+            {
+                if (item.Product != null)
+                {
+                    return item.Product.Id == 3;
+                }else
+                    return false;
+            });
+          
             Assert.Null(cartItem3);
 
         }

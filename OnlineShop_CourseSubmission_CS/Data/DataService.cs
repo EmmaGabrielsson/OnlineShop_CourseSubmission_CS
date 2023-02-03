@@ -1,5 +1,4 @@
-﻿using OnlineShop_CourseSubmission_CS.Component;
-using OnlineShop_CourseSubmission_CS.Components;
+﻿using OnlineShop_CourseSubmission_CS.Components;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
