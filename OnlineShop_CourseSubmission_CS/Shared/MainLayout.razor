@@ -58,7 +58,7 @@
                         @foreach (var item in SearchedProducts)
                         {
                                 <div class="card">
-                                    <a href="/product/@item.Id">
+                                <a @onclick="()=> SearchString = string.Empty" href="/product/@item.Id">
                                         <div class="added-card">
                                             <img src=@item.Image class="card-img-top" alt="products">
                                         </div>
