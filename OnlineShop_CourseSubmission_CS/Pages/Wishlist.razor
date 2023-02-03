@@ -8,8 +8,8 @@
 <h3>Your Wishlist:</h3>
 
 <div class="cartItemsList">
-@foreach(Products pro in WishItem.WishList)
-{
+	@foreach(Products pro in WishItem.WishList)
+	{
 		<div class="card">
 			<a href="/product/@pro.Id">
 				<div class="added-card">
@@ -43,7 +43,7 @@
 				</button>
 			</div>
 		</div>
-}
+	}
 </div>
 @if (!WishItem.WishList.Any())
 {
