@@ -12,15 +12,19 @@ namespace OnlineShop_CourseSubmission_CS.Component
 			Products[] allProd = await data.GetAllProducts();
 			Products? product = allProd.FirstOrDefault(x => x.Id == productId);
 
-			Products prodWish=WishList.Find(x=>x.Id==productId);
+			Products? prodWish=WishList.Find(x=>x.Id==productId);
 			if (prodWish != null)
 			{
 				return;
 			}
 			else
 			{
-				Products addedWish = product;
-				WishList.Add(addedWish);
+				if(product!= null) 
+				{ 
+					Products addedWish = product;
+					WishList.Add(addedWish);
+				}
+				
 			}
 		}
         public static void Remove(int productId)
