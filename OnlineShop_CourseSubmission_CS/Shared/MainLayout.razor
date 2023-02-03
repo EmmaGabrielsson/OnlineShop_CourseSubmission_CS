@@ -22,7 +22,7 @@
                        placeholder="search products.." />
                 <button type="button" @onclick="()=>HandleSearch(SearchString)" class="search-icon oi oi-magnifying-glass p-2"></button>
             </div>
-            <div @onclick="()=> SearchString = string.Empty">
+            <div class="icons-top" @onclick="()=> SearchString = string.Empty">
             @if (!WishItem.WishList.Any())
             {
                 <a class="btn-icon" href="wishlist" title="Your Wishlist">
@@ -40,14 +40,15 @@
                 </a>
             }
                 <a class="btn-icon oi oi-cart m-3" href="cart" title="Your Cart">
-                @if (ShoppingCart.TotalQuantity != 0) {
-                        <span class="cart-count">@ShoppingCart.TotalQuantity</span>
+                @if (ShoppingCart.TotalQuantity != 0) 
+                {
+                        <span class="cart-count">@UpdateCount</span>
                 }
             </a>
             </div>
         </div>
 
-        <article class="content px-4">
+        <article class="content px-4" @onclick="()=>UpdateCount=ShoppingCart.TotalQuantity">
             @if (!string.IsNullOrEmpty(SearchString))
             {
                 @if (SearchedProducts != null)
@@ -124,6 +125,7 @@
 @code {
     private string? SearchString { get; set; }
     private Products[]? SearchedProducts;
+    private int? UpdateCount;
 
     //Function to get searched products and filter them into SearchedProducts array.
     private async Task HandleSearch(string? keyword)
