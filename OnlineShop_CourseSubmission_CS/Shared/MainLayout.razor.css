@@ -86,10 +86,10 @@ main {
 }
 
 .no-match {
-    background-color: #ffe566;
+    background-color: #ffe566bf;
     border-radius: 10px;
     padding: 6px;
-    width: fit-content;
+    text-align: center;
 }
 
 footer {
