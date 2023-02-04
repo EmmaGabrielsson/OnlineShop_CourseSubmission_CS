@@ -76,6 +76,7 @@ namespace OnlineShop_CourseSubmission_CS.Component
 		//function of when input of quantity changes, update shoppingcart.
 		public static void UpdateCart(Products prod, int newQuantity)
 		{
+		
             CartItem? item = CartList.FirstOrDefault((cartItem) =>
             {
                 if (cartItem.Product != null)
@@ -87,6 +88,12 @@ namespace OnlineShop_CourseSubmission_CS.Component
 					return false;
                 
             });
+            if (newQuantity <= 0 )
+            {
+                newQuantity = 1;
+				item.Quantity= newQuantity;
+                UpdateCart();
+            }
             if (item == null)
 			{
 				item = new CartItem()

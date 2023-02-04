@@ -122,10 +122,11 @@
     private void QuantityChanged(ChangeEventArgs args, Products prod)
     {
         if(args.Value!=null)
-        {
+        {   
             Int32.TryParse(args.Value.ToString(), out int newQuantity);
             ShoppingCart.UpdateCart(prod, newQuantity);
             return;
+
         }
     }
 }
