@@ -5,7 +5,10 @@ namespace OnlineShop_CourseSubmission_CS.Component
 {
 	public class WishItem
 	{
+		//create wishlist as static variable to store the data
 		public static List<Products> WishList = new();
+
+		//function add product to wish
 		public static async void AddToWish(int productId)
 		{
 			DataService data = new DataService();
@@ -27,6 +30,8 @@ namespace OnlineShop_CourseSubmission_CS.Component
 				
 			}
 		}
+
+		//function remove product from wish
         public static void Remove(int productId)
         {
             Products? product = WishList.FirstOrDefault(x => x.Id == productId);
