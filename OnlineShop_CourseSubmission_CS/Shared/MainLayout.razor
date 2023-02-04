@@ -146,9 +146,16 @@
         {
             DataService data = new DataService();
             Products[] AllProducts = await data.GetAllProducts();
-            SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();           
+            SearchedProducts = AllProducts.Where(p =>
+            {
+                if (p.Title != null)
+                    return p.Title.ToLower().Contains(keyword.ToLower());
+                else
+                    return false;
+            }
+            ).ToArray();
+            Search = false;
         }
-        Search = false;
     }
 
     //Function to run HandleSearch when enterkey is pressed on search-products inputfield
