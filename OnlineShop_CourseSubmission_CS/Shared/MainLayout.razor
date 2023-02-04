@@ -6,7 +6,6 @@
 @using System.Text.Json.Serialization;
 @using System.Linq;
 
-
 <div class="page">
     <div class="sidebar" @onclick="()=> SearchString = string.Empty">
         <NavMenu />
@@ -23,7 +22,7 @@
                        placeholder="search products.." />
                 <button type="button" @onclick="()=>HandleSearch(SearchString)" class="search-icon oi oi-magnifying-glass p-2"></button>
             </div>
-            <div @onclick="()=> SearchString = string.Empty">
+            <div class="icons-top" @onclick="()=> SearchString = string.Empty">
             @if (!WishItem.WishList.Any())
             {
                 <a class="btn-icon" href="wishlist" title="Your Wishlist">
@@ -41,14 +40,15 @@
                 </a>
             }
                 <a class="btn-icon oi oi-cart m-3" href="cart" title="Your Cart">
-                @if (ShoppingCart.TotalQuantity != 0) {
-                    <span class="cart-count">@ShoppingCart.TotalQuantity</span>
+                @if (ShoppingCart.TotalQuantity != 0) 
+                {
+                        <span class="cart-count">@UpdateCount</span>
                 }
             </a>
             </div>
         </div>
 
-        <article class="content px-4">
+        <article class="content px-4" @onclick="()=>UpdateCount=ShoppingCart.TotalQuantity">
             @if (!string.IsNullOrEmpty(SearchString))
             {
                 @if (SearchedProducts != null)
@@ -109,6 +109,16 @@
                     {
                         <p class="no-match">Sorry, no products matched your search. Try other searchwords.</p>
                     }
+                } else if (Search)
+                {
+                 <div class="cartItemsList">
+                    <p class="searching">searching..</p>
+                    <div class="svg-container">
+                    <svg>
+                        <circle cx="70" cy="70" r="70"></circle>
+                    </svg>
+                    </div>
+                </div>
                 }
             }
             else
@@ -123,26 +133,30 @@
 </div>
 
 @code {
-
     private string? SearchString { get; set; }
     private Products[]? SearchedProducts;
+    private int? UpdateCount;
+    private bool Search = false;
 
     //Function to get searched products and filter them into SearchedProducts array.
-    private async Task HandleSearch(string keyword)
+    private async Task HandleSearch(string? keyword)
     {
-        DataService data = new DataService();
-        Products[] AllProducts = await data.GetAllProducts();
-        SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();
+        Search = true;
+        if (keyword != null)
+        {
+            DataService data = new DataService();
+            Products[] AllProducts = await data.GetAllProducts();
+            SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();           
+        }
+        Search = false;
     }
 
+    //Function to run HandleSearch when enterkey is pressed on search-products inputfield
     private async Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            var s = SearchString;
-            await HandleSearch(s);
+            await HandleSearch(SearchString);
         }
     }
-    
 }
-

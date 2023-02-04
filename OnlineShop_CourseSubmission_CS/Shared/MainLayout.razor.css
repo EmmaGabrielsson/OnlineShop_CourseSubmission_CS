@@ -86,10 +86,10 @@ main {
 }
 
 .no-match {
-    background-color: #ffe566;
+    background-color: #ffe566bf;
     border-radius: 10px;
     padding: 6px;
-    width: fit-content;
+    text-align: center;
 }
 
 footer {
@@ -115,82 +115,126 @@ footer {
         color: #013d48;
     }
 
-.searching-progress {
-    position: relative;
-    display: block;
-    width: 8rem;
-    height: 8rem;
-    margin: 20vh auto 1rem auto;
-}
-
-    .searching-progress circle {
-        fill: none;
-        stroke: #e0e0e0;
-        stroke-width: 0.6rem;
-        transform-origin: 50% 50%;
-        transform: rotate(-90deg);
-    }
-
-        .searching-progress circle:last-child {
-            stroke: #0076878e;
-            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
-            transition: stroke-dasharray 0.05s ease-in-out;
-        }
-
-.searching-progress-text {
+.searching {
     position: absolute;
-    text-align: center;
-    font-weight: bold;
-    inset: calc(40vh + 4rem) 0 auto 0.2rem;
+    top: 16rem;
+    font-size: 18px;
+    z-index: 2;
+    animation: textanim 2s ease-in-out infinite;
 }
 
-    .searching-progress-text:after {
-        content: var(--blazor-load-percentage-text);
+@keyframes textanim {
+    0% {
+        color: black;
     }
 
-
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-        min-height: none;
+    50% {
+        color: #066f7e;
     }
 
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
+    100% {
+        color: black;
     }
+}
 
-    .top-row {
-        position: sticky;
-        top: 0;
-        z-index: 1;
+.svg-container {
+    margin-top: 4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-container svg {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
     }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
-        .top-row.auth ::deep a:first-child {
-            flex: 1;
-            text-align: right;
-            width: 0;
+.svg-container svg circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 10;
+    stroke: #01454fff;
+    stroke-linecap: round;
+    transform: translate(5px,5px);
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    animation: animate 4s linear infinite;
+}
+
+    @keyframes animate {
+        0%, 100% {
+            stroke-dashoffset: 440;
+            stroke: #01454fff;
+        }
+        50% {
+            stroke-dashoffset: 0;
+            stroke: #068da0;
         }
 
-    .top-row, article {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
+        50.1% {
+            stroke-dashoffset: 880;
+        }
     }
 
-    footer {
-        left: 250px;
+    @media (min-width: 641px) {
+        .page {
+            flex-direction: row;
+            min-height: none;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .top-row {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+            .top-row.auth ::deep a:first-child {
+                flex: 1;
+                text-align: right;
+                width: 0;
+            }
+
+        .top-row, article {
+            padding-left: 2rem !important;
+            padding-right: 1.5rem !important;
+        }
+
+        footer {
+            left: 250px;
+        }
+
+        .searching {
+            position: absolute;
+            top: 12.5rem;
+            font-size: 18px;
+            z-index: 2;
+            animation: textanim 2s ease-in-out infinite;
+        }
+
     }
 
-    .searching-progress-text {
-        inset: calc(32vh + 4rem) 0 auto 16.5rem;
+    @media (min-width: 800px) {
+        .search-input {
+            width: 250px;
+        }
     }
-}
-
-@media (min-width: 800px){
-    .search-input {
-        width: 250px;
-    }
-}
