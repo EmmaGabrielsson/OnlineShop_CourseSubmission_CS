@@ -239,8 +239,13 @@ h3 {
     max-height: 400px;
     margin: auto;
 }
+
 .backtoshop {
     text-align: center;
+}
+
+.qty-input {
+    min-width: 50px;
 }
 
 @media (min-width: 768px) {
