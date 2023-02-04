@@ -109,6 +109,16 @@
                     @if (!SearchedProducts.Any()) {
                         <p class="no-match">Sorry, no products matched your search. Try other searchwords.</p>
                     }
+                } else if (Search)
+                {
+                 <div class="cartItemsList">
+                    <p class="searching">searching..</p>
+                    <div class="svg-container">
+                    <svg>
+                        <circle cx="70" cy="70" r="70"></circle>
+                    </svg>
+                    </div>
+                </div>
                 }
             }
             else
@@ -126,16 +136,19 @@
     private string? SearchString { get; set; }
     private Products[]? SearchedProducts;
     private int? UpdateCount;
+    private bool Search = false;
 
     //Function to get searched products and filter them into SearchedProducts array.
     private async Task HandleSearch(string? keyword)
     {
+        Search = true;
         if (keyword != null)
         {
             DataService data = new DataService();
             Products[] AllProducts = await data.GetAllProducts();
             SearchedProducts = AllProducts.Where(p => p.Title.ToLower().Contains(keyword.ToLower())).ToArray();           
         }
+        Search = false;
     }
 
     //Function to run HandleSearch when enterkey is pressed on search-products inputfield
