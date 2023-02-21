@@ -8,6 +8,8 @@ products using a search bar. The app includes the ability to add, remove,
 and update products in a cart. There is also the option to add items to a wishlist. 
 The cart functionality has been tested with unit tests.
 
+To quickly preview the site, see this netlify link: https://blazor-onlineshop.netlify.app/
+
 ## Project Structure
 The solution includes both the Blazor WebAssembly OnlineShop project and 
 Unit Tests for the cart functionality in the same solution.
